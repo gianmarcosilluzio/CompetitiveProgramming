@@ -1,67 +1,42 @@
-//============================================================================
-// Name        : CompetitiveProgramming.cpp
-// Author      : Gianmarco Silluzio
-// Version     :
-// Copyright   : gianmarcosilluzio
-// Description : Hello World in C++, Ansi-style
-//============================================================================
+/*
+ * TrappingRainWater.cpp
+ *
+ *  Created on: 26 set 2017
+ *      Author: Gianmarco Silluzio
+ *      Problem: http://practice.geeksforgeeks.org/problems/trapping-rain-water/0
+ *      Description Solution: Time complexity O(n), Space complexity O(n) + O(n) for addiotinal vector
+ *      The idea is find maximum height from the left and store it on leftMax array, find maximum height from the right and store it on rightMax array.
+ *      For each element of array update variable water and then add minimum between maxLeft and maxRigth less height of element.
+ */
 
 #include <iostream>
+#include <array>
+
 using namespace std;
 
-int getTrappingWater(int N, int array[]);
+int getWaterTrapped(std::vector<int> array);
 
 int main() {
-	int array[] = {3, 0, 3, 1, 4, 0, 2, 2, 1};
-	int N = sizeof(array)/sizeof(array[0]);
-	int water = getTrappingWater(N, array);
-	printf("%d, Water: ", water);
-	return 0;
+    std::vector<int> array = {3, 2, 5, 1, 0, 2, 1, 5, 0};
+    int water = getWaterTrapped(array);
+    printf("%d", water);
 }
 
-int getTrappingWater(int N, int array[]){
-	int totalSum = 0;
-	int sum = 0;
-	int current = 0;
-	int max = array[0];
-	int analyzed = 0;
-	int empty = 0;
-
-	for(int i = 0; i < N; i++){
-		current = array[i];
-
-		if(i != 0 && current >= max){
-			current = max;
-			max = array[i];
-			printf("FINAL] i: %d - Current: %d - Max: %d - Analyzed: %d - sum: %d\n",i, current, max, analyzed, sum);
-
-			sum = (analyzed * current - empty);
-			analyzed = 0;
-			totalSum += sum;
-			sum = 0;
-			empty = 0;
-			printf("MAX] i: %d - Current: %d - Max: %d - Analyzed: %d - TotalSum: %d\n",i, current, max, analyzed, totalSum);
-
-		}
-
-		if(analyzed > 0 && current>0){
-			sum += (analyzed * current - empty);
-			printf("SOMMA] i: %d - Current: %d - Max: %d - Analyzed: %d - Sum: %d\n",i, current, max, analyzed, sum);
-
-		}
-
-		if(array[i] < max){
-			analyzed++;
-			empty += current;
-		}
-		printf("i: %d - Current: %d - Max: %d - Analyzed: %d - Sum: %d\n",i, current, max, analyzed, sum);
-
-		if(i == N-1){
-			totalSum += sum;
-		}
-
-
-	}
-
-	return totalSum;
+int getWaterTrapped(std::vector<int> array){
+    int water = 0;
+    int size = array.size();
+    std::vector<int> leftMax(size);
+    std::vector<int> rightMax(size);
+    leftMax[0] = array[0];
+    for (int i = 1; i < size; i++) {
+        leftMax[i] = max(array[i], leftMax[i - 1]);
+    }
+    rightMax[size - 1] = array[size - 1];
+    for (int i = size - 2; i >= 0; i--) {
+        rightMax[i] = max(array[i], rightMax[i + 1]);
+    }
+    for (int i = 1; i < size - 1; i++) {
+        water += min(leftMax[i], rightMax[i]) - array[i];
+    }
+    return water;
 }
