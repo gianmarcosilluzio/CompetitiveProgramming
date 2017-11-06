@@ -1,3 +1,17 @@
+/*
+ *  TwoHeap.cpp
+ *
+ *  Created on: 06 nov 2017
+ *      Author: Gianmarco Silluzio
+ *      Problem: http://codeforces.com/problemset/problem/353/B
+ *      Description Solution:
+ *      Create structure vector of pair where are contained all input numbers (reversed if the second digit is smaller than first; e.g. 53 will become 35) with own position.
+ *      Sort the vector of pair by first value (number). Add to results vector the real numbers input with position (1 or 2) given from vector of pair created before. Count distinct value of 2 heap.
+ *      Print the number of all combination (heap1.size * heap2.size) and the position heap of results.
+ Time complexity consists of 2 loop and one sort vector --> O(2N) + O(NlogN)
+ Space complexity --> O(2N)
+ */
+
 #include <iostream>
 #include <vector>
 #include <algorithm>
