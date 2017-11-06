@@ -7,7 +7,7 @@
  *      Description Solution:
  *      Sort input elements. Then, find the k-th pair. First element of pair is the position in array elements (sorted) of number given by division of k/n (rounding for excess) less one (because array starts from 0 position).
  *      Second element of pair is the position in array elements ((k-1)-minVal*n)/cnt, where minVal is the smaller value than first element, and cnt is the count of first element of array.
- Time complexity consists of sort array --> O(logN) + O(NlogN)
+ Time complexity consists of one loop and sort array --> O(N) + O(NlogN)
  Space complexity --> O(N)
  */
 
