@@ -1,33 +1,23 @@
 /*
  * SlidingWindowMaxima.cpp
- *
- *  Updated on: 26 set 2017
+ *      Updated on: 26 set 2017
+ *      Updated on: 02 jan 2018
  *      Author: Gianmarco Silluzio
-		Problem: http://practice.geeksforgeeks.org/problems/maximum-of-all-subarrays-of-size-k/0
-		Description Problem: My solution is inspired by https://github.com/rossanoventurini/CompetitiveProgramming/blob/master/notes/lecture2.pdf
-		Time complexity: O(n)
-		Auxiliary Space: O(k)
+ *		Problem: http://practice.geeksforgeeks.org/problems/maximum-of-all-subarrays-of-size-k/0
+ *		Description Problem: My solution is inspired by https://github.com/rossanoventurini/CompetitiveProgramming/blob/master/notes/lecture2.pdf
+ *		Time complexity: O(n)
+ *		Space complexity: O(n)
 */
 
-#include <iostream>
-#include <array>
-#include <deque>
+#include<iostream>
+#include<vector>
+#include<deque>
 
 using namespace std;
 
-std::vector<int> getNextLargestNumbers(std::vector<int> array, int k);
-void printArrayElements(std::vector<int> array);
-
-int main() {
-    int k = 2;
-    std::vector<int> array = {5, 3, 2, 4, 6 };
-    std::vector<int> results = getNextLargestNumbers(array, k);
-    printArrayElements(results);
-}
-
-std::vector<int> getNextLargestNumbers(std::vector<int> array, int k){
-    std::vector<int> results;
-    std::deque<int> Q;
+void getNextLargestNumbers(vector<int> const& array, int k){
+    vector<int> results;
+    deque<int> Q;
     int N = array.size();
     results.reserve(N - k + 1);
     for(int i = 0; i < N; i++){
@@ -46,11 +36,35 @@ std::vector<int> getNextLargestNumbers(std::vector<int> array, int k){
 
     }
 
-    return results;
+    for(auto el = results.begin(); el != results.end(); el++){
+    	cout << *el << " ";
+    }
+
+    cout << endl;
 }
 
-void printArrayElements(std::vector<int> array){
-    for(int i = 0; i < array.size(); i++){
-        printf("%d ", array[i]);
-    }
+int main() {
+	int num_tests = 0;
+	cin >> num_tests;
+	vector<int> inputs;
+
+	for(int i = 0; i < num_tests; i++){
+	  	int n = 0;
+	  	int k = 0;
+	   	cin >> n >> k;
+	   	inputs.reserve(n);
+	   	for(int j = 0; j < n; j++){
+	   		int elem = 0;
+	   		cin >> elem;
+	   		inputs.push_back(elem);
+	   	}
+	   	getNextLargestNumbers(inputs, k);
+	   	inputs.clear();
+	}
+
+	return 0;
 }
+
+
+
+
