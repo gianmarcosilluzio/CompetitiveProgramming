@@ -1,32 +1,36 @@
 /*
  * MissingNumberInArray.cpp
  *
- *  Created on: 26 set 2017
+ *  	Created on: 26 set 2017
+ *  	Updated on: 02 jan 2017
  *      Author: Gianmarco Silluzio
  *      Problem: http://practice.geeksforgeeks.org/problems/missing-number-in-array/0
- *      Description Solution:
- *      The idea is get the sum of numbers inside array. Then subtract from the total each number.
- *      Then the total will be number missing
+ *      Description Solution: The idea is get the sum of numbers inside array. Then subtract from the total each number. Then the total will be number missing
+ *		Time complexity --> O(N)
+ *		Space complexity --> O(N)
  */
 
 #include<iostream>
 
 using namespace std;
 
-int getMissingNumber (int N, int array[]){
-    int i, total;
-    total  = N*(N+1)/2;
-    for ( i = 0; i< N; i++)
-       total -= array[i];
-    return total;
-}
-
 int main(){
-    int array[] = {1,2,4,5,6};
-    int N = sizeof(array)/sizeof(array[0]);
-    int missingNumber = getMissingNumber(N, array);
-    printf("%d", missingNumber);
-    return 1;
+	int num_tests = 0;
+	cin >> num_tests;
+
+	for(int i = 0; i < num_tests; i++){
+		int n = 0;
+		cin >> n;
+		int sum = 0;
+		int total  = n*(n+1)/2;
+		for(int j = 0; j < n-1; j++){
+			int elem = 0;
+			cin >> elem;
+			total -= elem;
+		}
+		cout << total << endl;
+	}
+    return 0;
 }
 
 
