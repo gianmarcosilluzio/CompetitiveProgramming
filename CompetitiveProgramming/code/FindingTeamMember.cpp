@@ -1,7 +1,8 @@
 /*
  *  FindingTeamMember.cpp
  *
- *  Updated on: 30 sept 2017
+ *      Created on: 30 sept 2017
+ *      Updated on: 03 jan 2017
  *      Author: Gianmarco Silluzio
  *      Problem: http://codeforces.com/problemset/problem/579/B?locale=en
  *      Description Solution:
@@ -11,6 +12,7 @@
  */
 
 #include <iostream>
+#include <vector>
 #include <set>
 #include <cstdlib>
 
@@ -39,19 +41,19 @@ struct classcomp {
 
 
 int main() {
-    //INPUT DATA
-    int n = 3;
-    int array[] = {487060,3831,161856,845957,794650,976977,83847,50566,691206,498447,698377,156232,59015,382455,626960};
+    int n = 0;
+    cin >> n;
+    vector<int> array;
 
-    std::set<Team*, classcomp> teams;
-    std::set<Team*,classcomp>::iterator itt;
+    set<Team*, classcomp> teams;
+    set<Team*,classcomp>::iterator itt;
     vector<int> results(n*2);
 
-    //INITIALIZE
     int k = 0;
     for(int i = 1; i < 2*n; ++i) {
         for(int j = 0; j < i; ++j) {
-            int strength = array[k++];
+            int strength = 0;
+            cin >> strength;
             teams.insert(new Team(i, j, strength));
         }
     }
@@ -64,7 +66,7 @@ int main() {
     }
 
     for(int result: results){
-        printf("%d ",result);
+        cout << result << " ";
     }
 
 }

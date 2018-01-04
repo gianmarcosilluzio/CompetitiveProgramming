@@ -1,42 +1,73 @@
 /*
  * TrappingRainWater.cpp
  *
- *  Created on: 26 set 2017
+ *      Created on: 26 set 2017
+ *      Updated on: 02 jan 2017
  *      Author: Gianmarco Silluzio
  *      Problem: http://practice.geeksforgeeks.org/problems/trapping-rain-water/0
- *      Description Solution: Time complexity O(n), Space complexity O(n) + O(n) for addiotinal vector
- *      The idea is find maximum height from the left and store it on leftMax array, find maximum height from the right and store it on rightMax array.
- *      For each element of array update variable water and then add minimum between maxLeft and maxRigth less height of element.
+ *      Description Solution: Pre-compute highest bar on left and right of every bar in O(n) time, with two variables to store the maximum till that point. Since water trapped at any element = min(m_left, m_right) – vec[i] we will calculate water trapped on smaller element out of vec[l] and vec[h] first and move the pointers till lo doesn’t cross hi. Efficient space solution inspired by https://www.geeksforgeeks.org/trapping-rain-water/.
+ *      Time complexity --> O(N)
+ *      Space complexity --> O(N), just input elements array
  */
-
 #include <iostream>
-#include <array>
+#include <vector>
 
 using namespace std;
 
-int getWaterTrapped(std::vector<int> array);
+int get_water(vector<int> const& vec){
+    int n = vec.size();
+    int result = 0;
 
-int main() {
-    std::vector<int> array = {3, 2, 5, 1, 0, 2, 1, 5, 0};
-    int water = getWaterTrapped(array);
-    printf("%d", water);
+    // maximum element on left and right
+    int l_max = 0, r_max = 0;
+
+    // indices to traverse the array
+    int l = 0, h = n-1;
+
+    while(l <= h){
+        if(vec[l] < vec[h]){
+            if(vec[l] > l_max){
+                // update max in left
+                l_max = vec[l];
+            }else{
+                // water on curr element = max - curr
+                result += l_max - vec[l];
+                l++;
+            }
+        }else{
+            if(vec[h] > r_max){
+                // update right maximum
+                r_max = vec[h];
+            }else{
+                result += r_max - vec[h];
+                h--;
+            }
+        }
+    }
+
+    return result;
 }
 
-int getWaterTrapped(std::vector<int> array){
-    int water = 0;
-    int size = array.size();
-    std::vector<int> leftMax(size);
-    std::vector<int> rightMax(size);
-    leftMax[0] = array[0];
-    for (int i = 1; i < size; i++) {
-        leftMax[i] = max(array[i], leftMax[i - 1]);
+int main() {
+
+    int num_tests = 0;
+    cin >> num_tests;
+
+    vector<int> inputs;
+    for (int i = 0; i < num_tests; ++i) {
+        int n = 0;
+        cin >> n;
+        inputs.reserve(n);
+        for (int j = 0; j < n; ++j) {
+            int x = 0;
+            cin >> x;
+            inputs.push_back(x);
+        }
+
+        int water = get_water(inputs);
+        cout << water << endl;
+        inputs.clear();
     }
-    rightMax[size - 1] = array[size - 1];
-    for (int i = size - 2; i >= 0; i--) {
-        rightMax[i] = max(array[i], rightMax[i + 1]);
-    }
-    for (int i = 1; i < size - 1; i++) {
-        water += min(leftMax[i], rightMax[i]) - array[i];
-    }
-    return water;
+
+    return 0;
 }
