@@ -1,12 +1,12 @@
 /*
- *  CountInversion.cpp
- *
- *  Created on: 07 nov 2017
+ *  InversionCount.cpp
+ *      First release was named CountInversion.cpp
+ *      Created on: 07 nov 2017
+ *      Updated on: 08 jan 2018
  *      Author: Gianmarco Silluzio
  *      Problem: http://www.spoj.com/problems/INVCNT/
  *      Description Solution:
  *      The idea is count all inversions of number during merge step of mergeSort algorithm. The final result is given by the sum of left and rigth count of inversion. The count of inversions is in merge step, in particular when the number of left side is greater than rigth side (the inversions are the middle - position of left number because left and right sides are sorted).
-
  Time complexity consists of sort array, so the time complexity of merge sort --> O(NlogN)
  Space complexity --> O(N)
  */
@@ -72,12 +72,12 @@ uint64_t mergeSort(vector<uint64_t>& arr, int l, int r){
 
 int main(){
     string blank;//"get input" inspired by Rossano's solution
-    size_t n_tests;
-    cin >> n_tests;
+    int tests_case;
+    cin >> tests_case;
     getline(cin, blank);
 
-    for(size_t i = 0; i < n_tests; ++i) {
-        size_t n;
+    for(int i = 0; i < tests_case; ++i) {
+        int n;
         cin >> n;
         auto A = get_input_sequence<uint64_t>(n);
         getline(cin, blank);
@@ -86,5 +86,5 @@ int main(){
         cout << inv << endl;
     }
 
-      return 0;
+    return 0;
 }

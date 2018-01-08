@@ -1,7 +1,8 @@
 /*
  *  FindPair.cpp
  *
- *  Created on: 07 oct 2017
+ *      Created on: 07 oct 2017
+ *      Update on: 08 jan 2017
  *      Author: Gianmarco Silluzio
  *      Problem: http://codeforces.com/problemset/problem/160/C?locale=en
  *      Description Solution:
@@ -15,25 +16,30 @@
 #include <vector>
 #include <algorithm>
 
+using namespace std;
+
 int main() {
     uint64_t n, k, minVal;
-    std::cin >> n;
-    std::cin >> k;
+    cin >> n;
+    cin >> k;
 
-    std::vector<int> elements(n);
+    vector<int> elements(n);
     for(int i = 0; i < n; i++){
-        std::cin >> elements[i];
+        cin >> elements[i];
     }
-    std::sort(elements.begin(), elements.end());
+    sort(elements.begin(), elements.end());
 
-    int x = elements[(k-1)/n];
+    uint64_t i = (k-1)/n;
+    int x = elements[i];
 
     for(minVal = 0; minVal < n; minVal++){
-        if(elements[minVal] == x) break;
+        if(elements[minVal] == x){
+            break;
+        }
     }
 
     uint64_t cnt = count(elements.begin(), elements.end(), x);
     int y = elements[((k-1)-minVal*n)/cnt];
 
-    std::cout << x << " " << y;
+    cout << x << " " << y;
 }

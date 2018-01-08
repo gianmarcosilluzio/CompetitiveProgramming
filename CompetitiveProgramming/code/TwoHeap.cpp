@@ -1,7 +1,8 @@
 /*
  *  TwoHeap.cpp
  *
- *  Created on: 06 nov 2017
+ *      Created on: 06 nov 2017
+ *      Updated on: 08 jan 2018
  *      Author: Gianmarco Silluzio
  *      Problem: http://codeforces.com/problemset/problem/353/B
  *      Description Solution:
@@ -18,79 +19,57 @@
 
 using namespace std;
 
-int invertNumber(int number);
+int main() {
 
-bool compare (std::pair<int, int> i,std::pair<int, int> j) {
-    return (i.first<j.first);
-}
-
-int main(){
-    
     size_t n;
     cin >> n;
     n = 2*n;
-    
-    std::vector<int> input(n);
-    for(size_t i = 0; i < n; ++i){
-        cin >> input[i];
+
+    vector<pair<int,size_t>> inputs(n);
+    vector<int> heaps(n);
+    int distinctSize[3];
+    distinctSize[1] = 0; distinctSize[2] = 0;
+
+    for(int i = 0; i < n; i++) {
+        cin >> inputs[i].first;
+        inputs[i].second = i;
     }
-    
-    std::vector<std::pair<int, int>> results(n);
-    std::vector<std::pair<int, int>> pairs;
-    int distinctSize1 = 1;
-    int distinctSize2 = 1;
-    
-    for (int i = 0; i < input.size(); i++) {
-        std::pair<int, int> pair; 
-        int number = input[i];
-        int invertedNumber = invertNumber(number);
-        if(invertedNumber<number){
-            pair.first = invertedNumber;
-        }else{
-            pair.first = number;
-        }
-        pair.second = i;
-        pairs.push_back(pair);
-    }
-    
-    std::sort (pairs.begin(), pairs.end(), compare);
-    
-    int k = 1;
-    for (int i = 0; i < pairs.size(); i++) {
-        results[pairs[i].second].first = input[pairs[i].second];
-        results[pairs[i].second].second = k;
-        if(k==2){
-            k--;
-            if(i > 1 && results[pairs[i].second].first != results[pairs[i-2].second].first){
-                distinctSize1++;
+
+    sort(inputs.begin(), inputs.end());
+
+    bool first_occurence = true;
+
+    for(int i = 1; i < n; ++i) {
+        if(inputs[i].first == inputs[i-1].first) {
+            if(first_occurence) {
+                heaps[inputs[i-1].second] = 1;
+                heaps[inputs[i].second] = 2;
+                distinctSize[1]++; distinctSize[2]++;
+                first_occurence = false;
             }
-        }else{
-            k++;
-            if(i > 1 && results[pairs[i].second].first != results[pairs[i-2].second].first){
-                
-                distinctSize2++;
-            }
+            continue;
         }
+        if(first_occurence) {
+            heaps[inputs[i-1].second] = (distinctSize[1] > distinctSize[2])+1;
+            distinctSize[heaps[inputs[i-1].second]]++;
+        }
+        first_occurence = true;
     }
-    
-    //print outcome
-    std::cout << distinctSize1*distinctSize2 << "\n";
-    for (auto i : results) {
-        std::cout << i.second << " ";
+
+    if(first_occurence && inputs[n-1] != inputs[n-2]) {
+        heaps[inputs[n-1].second] = (distinctSize[1] > distinctSize[2])+1;
+        distinctSize[heaps[inputs[n-1].second]]++;
     }
-    
+
+    cout << distinctSize[1] * distinctSize[2] << endl;
+
+    for(auto x: heaps) {
+        if(x == 0) {
+            x = (distinctSize[1] > distinctSize[2])+1;
+            distinctSize[x]++;
+        }
+        cout << x << " ";
+    }
+
     return 0;
-}
-
-int invertNumber(int number){
-    int inverted = 0;
-    int remainder;
-
-    while(number != 0)    {
-        remainder = number%10;
-        inverted = inverted*10 + remainder;
-        number /= 10;
-    }
-    
-    return inverted;
 }

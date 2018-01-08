@@ -1,7 +1,8 @@
 /*
  *  LargestEvenNumber.cpp
  *
- *  Created on: 09 nov 2017
+ *      Created on: 09 nov 2017
+ *      Updated on: 08 jan 2018
  *      Author: Gianmarco Silluzio
  *      Problem: http://practice.geeksforgeeks.org/problems/largest-even-number/0
  *      Description Solution:
@@ -17,19 +18,19 @@ Wrost case --> O(n+k) + O(2n);
 using namespace std;
 
 vector<int> countSort(vector<int> arr);
-vector<int> stringToArray(std::string str);
-std::string maxEven(vector<int> arr);
+vector<int> stringToArray(string str);
+string maxEven(vector<int> arr);
 
 int main(){
 
     int numTest = 0;
-    std::cin >> numTest;
+    cin >> numTest;
 
-    std::string str;
+    string str;
     for (int i = 0; i < numTest; ++i) {
-        std::cin >> str;
+        cin >> str;
         str = maxEven(stringToArray(str));
-        std::cout << str << std::endl;
+        cout << str << endl;
         str.clear();
     }
 
@@ -57,7 +58,7 @@ vector<int> countSort(vector<int> arr){
     return results;
 }
 
-vector<int> stringToArray(std::string str){
+vector<int> stringToArray(string str){
     vector<int> arr(str.length());
 
     for(int i=0;i<str.length();i++){
@@ -67,10 +68,10 @@ vector<int> stringToArray(std::string str){
     return arr;
 }
 
-std::string maxEven(vector<int> arr){
+string maxEven(vector<int> arr){
     arr = countSort(arr);
     string result;
-    std::pair<int, int> minEven = std::make_pair(-1, -1);
+    pair<int, int> minEven = make_pair(-1, -1);
 
     if(arr[0]%2 != 0){
         for (int i = arr.size()-1; i >= 0; i--) {
