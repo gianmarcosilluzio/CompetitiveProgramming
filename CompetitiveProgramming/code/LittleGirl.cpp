@@ -1,7 +1,8 @@
 /*
  *  LittleGirl.cpp
  *
- *  Created on: 15 nov 2017
+ *      Created on: 15 nov 2017
+ *      Updated on: 09 jan 2018
  *      Author: Gianmarco Silluzio
  *      Problem: http://codeforces.com/problemset/status
  *      Description Solution:
@@ -16,6 +17,9 @@
 using namespace std;
 
 int main(){
+
+    ios_base::sync_with_stdio(false);
+
     int n, q;
     int64_t result = 0;
     cin >> n >> q;

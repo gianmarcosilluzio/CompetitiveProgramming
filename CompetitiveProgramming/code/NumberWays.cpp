@@ -1,7 +1,7 @@
 /*
  *  NumberWays.cpp
  *
- *  Created on: 15 nov 2017
+ *  	Created on: 15 nov 2017
  *      Author: Gianmarco Silluzio
  *      Problem: http://codeforces.com/problemset/problem/466/C?locale=en
  *      Description Solution:

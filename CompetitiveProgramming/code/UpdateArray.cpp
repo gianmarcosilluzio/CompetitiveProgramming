@@ -1,7 +1,7 @@
 /*
  *  UpdateArray.cpp
  *
- *  Created on: 16 nov 2017
+ *  	Created on: 16 nov 2017
  *      Author: Gianmarco Silluzio
  *      Problem: http://www.spoj.com/submit/UPDATEIT/
  *      Description Solution:

@@ -1,7 +1,8 @@
 /*
  *  MaximumPathSum.cpp
  *
- *  Created on: 13 nov 2017
+ *      Created on: 13 nov 2017
+ *      Updated on: 09 jan 2017
  *      Author: Gianmarco Silluzio
  *      Problem: http://practice.geeksforgeeks.org/problems/maximum-path-sum/1
  *      Description Solution:
@@ -22,7 +23,6 @@ struct Node{
 	int data;
 	Node *left, *right;
 };
-
 #include<bits/stdc++.h>
 using namespace std;
 */
@@ -33,8 +33,8 @@ int findMax(Node* root, int &maxVal){
         return 0;
     }
 
-    int l = findMaxUtil(root->left,maxVal);
-    int r = findMaxUtil(root->right,maxVal);
+    int l = findMax(root->left,maxVal);
+    int r = findMax(root->right,maxVal);
     int maxSingle = max(max(l, r) + root->data, root->data);
     int maxTop = max(maxSingle, l + r + root->data);
     maxVal = max(maxVal, maxTop);
@@ -47,5 +47,3 @@ int maxPathSum(Node *root){
     findMax(root, max);
     return max;
 }
-
-

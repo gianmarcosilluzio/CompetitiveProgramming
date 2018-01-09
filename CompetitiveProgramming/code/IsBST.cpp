@@ -1,7 +1,8 @@
 /*
  *  IsBST.cpp
  *
- *  Created on: 12 nov 2017
+ *      Created on: 12 nov 2017
+ *      Updated on: 09 jan 2017
  *      Author: Gianmarco Silluzio
  *      Problem: http://practice.geeksforgeeks.org/problems/check-for-bst/1
  *      Description Solution:
@@ -11,33 +12,18 @@
  Space complexity --> O(1)
  */
 
-/*#include <cstdlib>
-#include <iostream>
-using namespace std;
+#include <climits>
 
-//struct of node
-struct Node{
-    struct Node* left, *right;
-    int data;
-};
-*/
-
-bool isBST(Node* root, Node* l, Node* r){
-
-    if (root == NULL){
+bool checkNodes(Node* root, int min, int max) {
+    if (!root){
         return true;
     }
-
-    if (l != NULL and l->data > root->data){
+    if (root->data < min or root->data > max){
         return false;
     }
-
-    if (r != NULL and r->data < root->data){
-        return false;
-    }
-
-    return isBST(root->left, l, root) and isBST(root->right, root, r);
+    return checkNodes(root->left, min, root->data - 1) and checkNodes(root->right, root->data + 1, max);
 }
 
-
-
+bool isBST(Node* root) {
+    return checkNodes(root, INT_MIN, INT_MAX);
+}

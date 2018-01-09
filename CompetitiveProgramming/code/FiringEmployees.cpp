@@ -1,7 +1,7 @@
 /*
  *  FiringEmployees.cpp
  *
- *  Created on: 12 nov 2017
+ *  	Created on: 12 nov 2017
  *      Author: Gianmarco Silluzio
  *      Problem: http://practice.geeksforgeeks.org/problems/firing-employees/0/?ref=self
  *      Description Solution:
