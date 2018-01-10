@@ -1,3 +1,15 @@
+/*
+ *  NMeetingRoom.cpp
+ *
+ *  	Created on: 13 dic 2017
+ *      Updated on: 10 jan 2017
+ *      Author: Gianmarco Silluzio
+ *      Problem: https://practice.geeksforgeeks.org/problems/n-meetings-in-one-room/0
+ *      Description Solution:
+ *      The result is all meetings which start before and have length (finish - start) minor possible. The meeting overlap in vertically are not solution. The idea save input in array of node struct. Sort array in order ascendent by finish time. Save the first node of array in array result. Go through odered array and compare each element with last elemnte saved in array result. If start of element analyzed is greater than finish of last element saved in array result, the element is added in array result.
+ Time complexity consits of sort array and one loop to save result--> Wrost case: O(N log N)
+ Space complexity (space of vector) --> O(N)
+*/
 #include <iostream>
 #include <vector>
 #include <algorithm>
