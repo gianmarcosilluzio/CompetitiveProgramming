@@ -1,3 +1,17 @@
+/*
+ *  NestedSegments.cpp
+ *
+ *  	Created on: 15 dic 2017
+ *      Updated on: 14 jan 2017
+ *      Author: Gianmarco Silluzio
+ *      Problem: http://codeforces.com/problemset/problem/652/D?locale=en
+ *      Description Solution:
+ *      The idea is sort queries in decreasing order by left part. Create a BIT and stores the right part of query for each segment. For each query store answer in array anwers given from BIT (passing rigth of query and n. n start from end, so from number of queries), and update sum of BIT. The result is contained in answrs array.
+
+ Time complexity --> Wrost case: O(NlogN)
+ Space complexity --> O(n)
+*/
+
 #include<iostream>
 #include<cstring>
 #include<algorithm>

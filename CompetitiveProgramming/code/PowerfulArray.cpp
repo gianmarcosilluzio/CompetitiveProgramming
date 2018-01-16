@@ -1,5 +1,20 @@
+/*
+ *  PowerfulArray.cpp
+ *
+ *  	Created on: 18 dic 2017
+ *      Updated on: 12 jan 2017
+ *      Author: Gianmarco Silluzio
+ *      Problem: http://codeforces.com/contest/86/problem/Dlocale=en
+ *      Description Solution:
+ *      The idea is use Mo's Algorithm to process offline query. Divide input in sqrt(n) blocks. Then process query in block (first block query, second block query, etc..). We order query by left value, and order the ordered query by rigth value for each block. For each query, count the frequency of elements, calculate the pow, and print the answer.
+ Time complexity --> Wrost case: O((N+q)radq(N))
+ Space complexity --> O(q)
+*/
+
+
 #include <iostream>
 #include <algorithm>
+
 using namespace std;
 
 int block;
