@@ -1,3 +1,17 @@
+/*
+ *  PashmakProblem.cpp
+ *
+ *  	Created on: 17 dic 2017
+ *      Updated on: 16 jan 2017
+ *      Author: Gianmarco Silluzio
+ *      Problem: http://codeforces.com/problemset/problem/459/D?locale=en
+ *      Description Solution:
+ *      The idea is remap values of input sequence, replacing value with rank in ascending order. Save the frequency of occurences in a vector, creating a fenwick tree to compute frequency, scanning sequence from rigth to left storing an vector of count of each value processed. Next, we scanning sequence from left to right, adding -1 in position of suff_counter of element scanned, incrementing counter, and adding to result the sum of counter in position of element scanned. Then print result.
+
+ Time complexity --> Wrost case: O(NlogN)
+ Space complexity --> O(n)
+*/
+
 #include <iostream>
 #include <algorithm>
 #include <vector>
