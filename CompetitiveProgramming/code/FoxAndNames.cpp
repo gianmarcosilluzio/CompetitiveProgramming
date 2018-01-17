@@ -1,3 +1,18 @@
+/*
+ *    FoxAndNames.cpp
+ *
+ *  	Created on: 17 dic 2017
+ *      Updated on: 14 jan 2017
+ *      Author: Gianmarco Silluzio
+ *      Problem: http://codeforces.com/problemset/problem/459/D?locale=en
+ *      Optimized solution inspired from https://bruceoutdoors.wordpress.com/2015/10/26/510c-fox-and-names-codeforces-tutorial/
+ *      Description Solution:
+ *      The idea is tracing the DFS using a vector of booleans, where the indices of the vector correspond to the graph nodes. Then validate that the digraph has no cycles (DAG: Directed Acyclic Graph), the topological order is as simple as finding the reverse post order of the DAG. Then use DFS twice on the digraph. First pass to check for cycles, and second pass to get the topological order. Detecting whether a sequence of words is “Impossible” is as simple as detecting whether there are any cycles in a directed graph, tracing the nodes of every recursive call a node traverses in a DFS. If within a recursive call of a node it traverses itself, there is a cycle.
+
+ Time complexity --> Wrost case: O(V + E)
+ Space complexity --> O(n)
+*/
+
 #include <bits/stdc++.h>
 
 using namespace std;
